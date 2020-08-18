@@ -1,0 +1,177 @@
+*, *::before, *::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-primary: #3398dc;
+  --clr-primary-darken: #3173dc;
+  --clr-secondary: #A83723;
+  --main-ff: 'Roboto', sans-serif;
+
+  --header--footer-height: 75px;
+}
+
+body {
+  font-family: var(--main-ff);
+}
+
+.container {
+  max-width: 80vw;
+  margin: 0 auto;
+}
+
+.btn {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  padding: 1em;
+  background-color: var(--clr-primary-darken);
+  color: #fff;
+  transition: background-color ease 300ms;
+}
+
+.btn:hover {
+  background-color: var(--clr-secondary);
+}
+
+.header__form {
+  z-index: 2;
+  height: var(--header--footer-height);
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--clr-primary);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+}
+
+.header__input {
+  padding: 1em;
+  border: none;
+  outline: none;
+}
+
+.main {
+  margin-top: 8vh;
+}
+
+
+.footer {
+  z-index: 2;
+  align-items: center;
+  height: var(--header--footer-height);
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--clr-primary);
+  color: #fff;
+  padding: 1rem;
+  justify-content: center;
+}
+
+figure {
+  display: none;
+  place-self: end;
+  order: 2;
+  justify-self: start;
+}
+
+summary {
+  outline: none;
+  pointer-events: all;
+}
+
+details {
+  pointer-events: none;
+  grid-column: 1 / -1;
+  cursor: pointer;
+  align-self: center;
+}
+
+article {
+  margin: 1rem;
+  padding: 2rem;
+  background-color: #f4f4f4;
+  justify-items: center;
+  text-align-last: left;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.hiddenBook {
+  display: none !important; /* important necessary -> otherwise it bugs in searching if it is opened */
+}
+
+var {
+  line-height: 1.5;
+}
+
+var[data-type="indexId"], var[data-type="categoryId"], figcaption {
+  display: none;
+}
+
+var[data-type="author"], var[data-type="category"] {
+  display: block;
+}
+
+var[data-type="author"]::before {
+  content: "Author: ";
+  font-weight: bold;
+}
+
+var[data-type="category"]::before {
+  content: "Category: ";
+  font-weight: bold;
+}
+
+details[open] summary {
+  margin-bottom: 1rem;
+  width: 370px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+details[open] summary ~ * {
+  animation: sweep .5s ease-in-out;
+}
+
+img {
+  max-width: 100%;
+  z-index: 1;
+  opacity: 0;
+  animation-name: slideIn;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+  animation-delay: 100ms;
+  animation-timing-function: ease-in;
+}
+
+/* animate img */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* animate details */
+@keyframes sweep {
+  0%    {opacity: 0; margin-left: -10px}
+  100%  {opacity: 1; margin-left: 0px}
+}
